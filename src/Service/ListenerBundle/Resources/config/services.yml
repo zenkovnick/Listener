@@ -1,0 +1,9 @@
+parameters:
+    service_listener.request.class: Service\ListenerBundle\EventListener\ServiceRequestListener
+
+services:
+    kernel.listener.request_listener:
+        class: %service_listener.request.class%
+        arguments: [ @service_container, @logger ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
